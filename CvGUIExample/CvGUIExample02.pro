@@ -18,11 +18,11 @@ HEADERS  += mainwindow.h
 FORMS    += mainwindow.ui
 
 
-INCLUDEPATH +=C:\OpenCV2.3.0\include
+INCLUDEPATH +=C:\OpenCV\install\include
 
-LIBS+=-LC:\OpenCV2.3.0\bin \
--lopencv_core230 \
--lopencv_highgui230 \
--lopencv_imgproc230 \
--lopencv_features2d230 \
--lopencv_calib3d230
+LIBS+=-LC:\OpenCV\install\bin \
+-lopencv_core240 \
+-lopencv_highgui240 \
+-lopencv_imgproc240 \
+-lopencv_features2d240 \
+-lopencv_calib3d240
