@@ -5,12 +5,6 @@
 #include <iostream>
 #include <list>
 
-//std::ostream operator<<(std::ostream& os, const cv::Scalar& in)
-//{
-//    os << in[0] << ", " << in[1] << ", " << in[2];
-//    return os;
-//}
-
 
 class DetectedObject
 {
@@ -62,6 +56,8 @@ private:
     cv::Scalar mRangeMax;
 
     bool mDebug;
+ 
+
 
 };
 

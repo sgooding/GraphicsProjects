@@ -1,6 +1,7 @@
 #include "DetectedObject.h"
 #include <vector>
 #include <list>
+#include <algorithm>
 
 using namespace cv;
 
@@ -188,6 +189,9 @@ DetectedObject::DetectLocation(const Mat& image)
         }
         imshow("thresh",thresh);
     }
+
+
+    return blobs.front().center;
 }
 
 // image must be hsv

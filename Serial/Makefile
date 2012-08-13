@@ -5,8 +5,8 @@ CFLAGS=-I$(INCDIR) -I. -I/OpenCV/install/include/opencv
 
 LIBS=-L/OpenCV/install/lib  -L.
 
-TARGET=CameraTest
-SRCS=tserial.cpp CameraTest.cpp DetectedObject.cpp
+TARGET=Serial
+SRCS=tserial.cpp mysertst.cpp
 OBJ=$(subst .cpp,.o,$(SRCS))
 LIBS+=-lopencv_core240 -lopencv_features2d240 -lopencv_highgui240 -lopencv_imgproc240 
 

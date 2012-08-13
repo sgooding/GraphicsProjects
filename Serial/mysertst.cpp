@@ -39,7 +39,7 @@ int main()
 {
 	com = new Tserial();
 	assert(com);	
-	com->connect("COM9", 9600, spNONE);
+	com->connect("COM6", 9600, spNONE);
 	
 	string cmd;	   
 	for(;;) {
