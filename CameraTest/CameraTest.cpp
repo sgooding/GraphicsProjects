@@ -3,7 +3,13 @@
 #include <sstream>
 #include "CVProps.h"
 #include "DetectedObject.h"
+
+#define SERIAL
+#undef SERIAL
+
+#ifdef SERIAL
 #include "tserial.h" 
+#endif
 
 
 static const bool realtime(true);
@@ -56,6 +62,7 @@ void onMouse(int event, int x, int y, int flags, void* params)
 int SetupCapture(VideoCapture*& cap)
 {
     cap = new VideoCapture(0);
+    cap->grab();
     if(!cap->isOpened())
     {
         std::cerr << "Failed to open capture." << std::endl;
@@ -95,6 +102,7 @@ bool UpdateKey(VideoCapturePtr& cap, Mat frame)
     return true;
 }
 
+#ifdef SERIAL
 double ReadIR(Tserial& serial)
 {
     int nbytes = serial.getNbrOfBytes();
@@ -116,6 +124,7 @@ double ReadIR(Tserial& serial)
     }
     return distance;
 }
+#endif
 
 int main(int argc, char* argv[])
 {    
@@ -127,7 +136,7 @@ int main(int argc, char* argv[])
         {
             return -1;
         } 
-        Props::PrintCameraParams(*cap);
+        //Props::PrintCameraParams(*cap);
     }
 
     //SimpleBlobDetector detector;
@@ -145,14 +154,17 @@ int main(int argc, char* argv[])
     namedWindow("raw");
     cvSetMouseCallback("raw",onMouseRaw,(void*)(&object));
     
+#ifdef SERIAL
     Tserial irsensor;
     irsensor.connect("COM6", 115200, spNONE);
 
     Tserial hport;
     hport.connect("COM8", 115200, spNONE);
+#endif
 
     for(;;)
     {
+#ifdef SERIAL
         double distance(ReadIR(irsensor));
         std::cout << "IR: " << distance << " cm" <<  std::endl;
 
@@ -237,6 +249,7 @@ int main(int argc, char* argv[])
         }
         //}
 
+#endif
 
         if(cap)
         {
@@ -273,7 +286,7 @@ int main(int argc, char* argv[])
     }
     
     //motorport.disconnect();
-    hport.disconnect();
+    //hport.disconnect();
         
     return 0;
 }

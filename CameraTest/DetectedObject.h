@@ -45,6 +45,23 @@ public:
     typedef Blobs::iterator BlobsI;
     typedef Blobs::const_iterator BlobsCI;
 
+
+    class CompareBlobs
+    {
+        public:
+            bool operator()(BlobsI first, BlobsI second)
+            {
+                return (first->id < second->id);
+            }
+    };
+    class EqualBlobs
+    {
+        public:
+            bool operator()(BlobsI first, BlobsI second)
+            {
+                return (first->id == second->id);
+            }
+    };
 private:
 
     cv::Rect mBoundingBox;

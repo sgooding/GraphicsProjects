@@ -107,9 +107,16 @@ DetectedObject::DetectLocation(const Mat& image)
             }
         }
     }
+    b_d.sort(CompareBlobs());
+    b_d.unique(EqualBlobs());
+    for(std::list<BlobsI>::iterator bi = b_d.begin(); bi != b_d.end(); ++bi)
+    {
+        std::cout << "Erasing : " << (*bi)->id << std::endl;
+    }
     for(std::list<BlobsI>::iterator bi = b_d.begin(); bi != b_d.end(); ++bi)
     {
         blobs.erase(*(bi));
+
     }
 
     if( !prevBlobs.empty() )
